@@ -14,7 +14,7 @@ RUN sudo apt-get install -y xfce4 xfce4-goodies tightvncserver x11vnc xvfb novnc
 EXPOSE 8080
 
 # Copy SSL certificate
-COPY novnc.pem /etc/ssl/novnc.pem
+COPY cert.pem /etc/ssl/novnc.pem
 
 # Start noVNC server
 CMD ["bash", "-c", "vncserver :1 -geometry 1024x768 -depth 24 && websockify -D --web /usr/share/novnc/ --token-auth --ssl-only --cert /etc/ssl/novnc.pem 8080 localhost:5901"]
